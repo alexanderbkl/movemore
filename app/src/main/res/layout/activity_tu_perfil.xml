@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tu_Perfil">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar"/>
+
+            <io.github.florent37.shapeofview.shapes.ArcView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:elevation="4dp"
+                app:shape_arc_height="30dp"
+                app:shape_arc_position="bottom">
+                <!-- YOUR CONTENT -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/fondo_app_2"/>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="121dp"
+                    android:id="@+id/ImageVCab"
+                    android:foregroundGravity="bottom"
+                    android:src="@drawable/mm_logo_2"
+                    android:layout_marginTop="20dp"/>
+
+            </io.github.florent37.shapeofview.shapes.ArcView>
+
+            <!--Elements displayed  -->
+            <ImageView
+                android:id="@+id/imageView_Perfil"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/foto_camara"
+                android:background="@drawable/image_view_border"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:padding="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/imageView_Perfil"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre: "
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="false"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_Apellidos"
+                    android:text="Nombe de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_centerHorizontal="false"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Apellidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apellidos: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Apellidos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apellidos de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Telefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Telefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Direccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Direccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Usuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuario: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Usuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuario de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/txt_Role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role: "
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+                <TextView
+                    android:id="@+id/txtV_Role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role de la bbdd"
+                    android:textColor="@color/black"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_Modificar"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="MODIFICAR"
+                    android:background="@drawable/bordes_redondos"
+                    android:textStyle="bold"
+                    android:layout_margin="20dp"/>
+                <Button
+                    android:id="@+id/btn_Eliminar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ELIMINAR"
+                    android:backgroundTint="@color/black"
+                    android:background="@drawable/bordes_redondos"
+                    android:textStyle="bold"
+                    android:layout_margin="20dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

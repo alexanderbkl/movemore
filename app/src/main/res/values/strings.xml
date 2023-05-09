@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">MoveMore</string>
+
+    <string-array name="filro_alquiler">
+        <item>Todo</item>
+        <item>Inactive</item>
+        <item>Active</item>
+        <item>Closed</item>
+    </string-array>
+
+    <string-array name="filro_review">
+        <item>Todo</item>
+        <item>Comentado</item>
+        <item>Sin Comentar</item>
+    </string-array>
+
+    <string-array name="filro_asientos">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="filro_color">
+        <item>Blanco</item>
+        <item>Negro</item>
+        <item>Azul</item>
+        <item>Rojo</item>
+        <item>Gris</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+    </string-array>
+
+    <string-array name="filro_marca">
+        <item>Seat</item>
+        <item>Nissan</item>
+        <item>BMW</item>
+        <item>Opel</item>
+        <item>Renault</item>
+        <item>Mercedes</item>
+        <item>Peugeot</item>
+    </string-array>
+
+    <string-array name="filro_combustible">
+        <item>Economy/petrol</item>
+        <item>Mid-size/petrol</item>
+        <item>Full-size/eletric</item>
+        <item>SUV/gas-oil/hybrid"</item>
+        <item>Luxury/petrol/hybrid</item>
+        <item>Sedan/petrol</item>
+        <item>Compact/petrol"</item>
+        <item>Mid-size/petrol</item>
+        <item>Luxury/petrol</item>
+        <item>Compact/petrol</item>
+        <item>Electric/electric</item>
+        <item>Hybrid/petrol/hybrid</item>
+    </string-array>
+</resources>
+
+
+
+

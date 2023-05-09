@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar" />
+
+            <io.github.florent37.shapeofview.shapes.ArcView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:elevation="4dp"
+                app:shape_arc_height="30dp"
+                app:shape_arc_position="bottom">
+                <!-- YOUR CONTENT -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/fondo_app_2" />
+
+                <ImageView
+                    android:id="@+id/ImageVCab"
+                    android:layout_width="match_parent"
+                    android:layout_height="121dp"
+                    android:layout_marginTop="20dp"
+                    android:foregroundGravity="bottom"
+                    android:src="@drawable/mm_logo_2" />
+
+            </io.github.florent37.shapeofview.shapes.ArcView>
+
+            <TextView
+                android:id="@+id/txt_ordenar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="50dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Ordenar por"
+                android:textColorHint="@color/black"
+                android:textSize="20sp">
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spn_ordenar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_ordenar"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:backgroundTint="#FF0000"
+                android:textColorHint="@color/black">
+            </Spinner>
+
+            <TextView
+                android:id="@+id/txt_ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Ciudad"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <Spinner
+                android:id="@+id/spn_ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:backgroundTint="#FF0000"
+                android:textColorHint="@color/black"/>
+
+            <TextView
+                android:id="@+id/txt_precio_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Precio Mínimo"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/txt_pmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#30ffffff"
+                android:padding="10dp"
+                android:text="0"
+                android:textColorHint="@color/black"
+                android:textSize="18sp"/>
+
+            <SeekBar
+                android:id="@+id/seekB_precio_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="100"
+                android:max="3100"
+                android:progress="0"/>
+
+            <TextView
+                android:id="@+id/txt_precio_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Precio Máximo"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/txt_pmax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#30ffffff"
+                android:padding="10dp"
+                android:text="0"
+                android:textColorHint="@color/black"
+                android:textSize="18sp"/>
+
+            <SeekBar
+                android:id="@+id/seekB_precio_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="100"
+                android:max="3100"
+                android:progress="0"/>
+
+            <TextView
+                android:id="@+id/txt_fecha_ini"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spn_ordenar"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Fecha Inicio"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/etxt_fecha_ini"
+                android:hint="Introduce la fecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/txt_fecha_fin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spn_ordenar"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Fecha Fin"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/etxt_fecha_fin"
+                android:hint="Introduce la fecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/txt_carburante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spn_ciudad"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Carburante"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <Spinner
+                android:id="@+id/spn_carburante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_carburante"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:backgroundTint="#FF0000"
+                android:textColorHint="@color/black"/>
+
+            <TextView
+                android:id="@+id/txt_modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spn_carburante"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Modelo"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+            <Spinner
+                android:id="@+id/spn_modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_modelo"
+                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="20dp"
+                android:padding="20dp"
+                android:backgroundTint="#FF0000"
+                android:textColorHint="@color/black"/>
+
+            <TextView
+                android:id="@+id/txt_ano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spn_modelo"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:background="#30ffffff"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:text="Año"
+                android:textColorHint="@color/black"
+                android:textSize="20dp"/>
+
+
+            <EditText
+                android:id="@+id/etxt_ano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+            <Button
+                android:id="@+id/btn_aplica_filtros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_ano"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bordes_redondos"
+                android:text="APLICAR FILTROS"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
