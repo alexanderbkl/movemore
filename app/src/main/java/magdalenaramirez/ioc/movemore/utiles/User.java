@@ -1,9 +1,17 @@
 package magdalenaramirez.ioc.movemore.utiles;
 
+import android.content.Context;
+import android.widget.Toast;
+import magdalenaramirez.ioc.movemore.MainActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,11 +194,23 @@ public class User {
                 this.email = user.getString("email");
                 this.admin = user.getInt("is_admin") == 0 ? false : true;
                 return true;
+            } else {
+                return false;
             }
 
         } catch (JSONException ex) {
             message = ex.getMessage();
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
 
         //If something happens, it returns false.
@@ -215,6 +235,16 @@ public class User {
         } catch (IOException | JSONException  ex) {
             message = ex.getMessage(); //get message
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
         }
 
         return false;
@@ -246,6 +276,16 @@ public class User {
         } catch (IOException | JSONException  ex) {
             message = ex.getMessage(); //get message
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -268,7 +308,8 @@ public class User {
                     coches.add(jsonObjectToGetCar(carsObjects.getJSONObject(i)));
                 }
             }
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -299,7 +340,8 @@ public class User {
             message = jsonObject.getString("message"); //get message
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             message = ex.getMessage(); //get message
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -318,7 +360,8 @@ public class User {
             message = jsonObject.getString("message"); //get message
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             message = ex.getMessage(); //get message
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -354,6 +397,12 @@ public class User {
         } catch (IOException | JSONException ex) {
             message = ex.getMessage(); //get message
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (KeyStoreException | UnrecoverableKeyException | CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -380,6 +429,16 @@ public class User {
         } catch (IOException | JSONException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
         return reviewAlquilados;
     }
@@ -401,7 +460,8 @@ public class User {
                     reviewAlquilados.add(jsonObjectToGetAlquiler(array.getJSONObject(i)));
                 }
             }
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
         }
@@ -425,7 +485,8 @@ public class User {
 
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
         }
@@ -443,7 +504,8 @@ public class User {
 
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
         }
@@ -464,7 +526,8 @@ public class User {
 
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                UnrecoverableKeyException | KeyManagementException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
         }
@@ -492,6 +555,16 @@ public class User {
         } catch (IOException | JSONException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
         return reviewAlquilados;
     }
@@ -507,9 +580,17 @@ public class User {
             message = jsonObject.getString("message"); //get message
 
             return jsonObject.getBoolean("status");
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -531,9 +612,17 @@ public class User {
                     reviewAlquilados.add(jsonObjectToGetAlquiler(array.getJSONObject(i)));
                 }
             }
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | KeyStoreException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
             message = ex.getMessage(); //get message
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
         }
         return reviewAlquilados;
     }

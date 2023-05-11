@@ -1,5 +1,6 @@
 package magdalenaramirez.ioc.movemore;
 
+import android.os.Looper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //Comunicación respuesta JSON con Volley
         //Volley uso de redes, solicitudes o cargar datos en el servidor
         requestQueue = Volley.newRequestQueue(this);
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Verificar email y contraseña de la respuesta JSON
                 if (mTV_Main_Email.getText().toString().isEmpty()|| mTV_Main_Passw.getText().toString().isEmpty()){
-                    Toast.makeText(getBaseContext(),"Invalid Username or Password!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Usuario o contraseña incorrectos!",Toast.LENGTH_LONG).show();
                 }else {
                     loginRequest();
                 }
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mTV_Main_Registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Registro.class);
+                Intent intent = new Intent(getApplicationContext(),Registro.class);
                 startActivity(intent);
             }
         });
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    // Cierre del onCreate
+        // Cierre del onCreate
     }
 
     //
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             fOut.write(fileContents.getBytes());
             fOut.close();
             File fileDir = new File(getFilesDir(),file);
-            //Toast.makeText(getBaseContext(),"File Saved at" + fileDir,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"File Saved at" + fileDir,Toast.LENGTH_LONG).show();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             }
             //Evaluar si el fichero contiene usuario creado o está vacío el fichero
             if(temp != ""){
-                Toast.makeText(getBaseContext(),"usuario conectado: " + temp,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"usuario conectado: " + temp,Toast.LENGTH_LONG).show();
 
                 //Formateamos credenciales del fichero temp
                 String[] partes = temp.split("-");
@@ -178,21 +180,27 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     System.out.println("emailString:" + emailString);
                     System.out.println("passString :" + passwString);
-
                     if (usr.loadUser(emailString, passwString)) {
                         MenuPrincipal.usr = usr;
 
                         if (usr.isAdmin()) {
                             isAdminLogin = false;
-                            Intent intent_admin = new Intent(MainActivity.this, MenuPrincipal_admin.class);
+                            Intent intent_admin = new Intent(getApplicationContext(), MenuPrincipal_admin.class);
                             startActivity(intent_admin);
                             finish();
                         } else {
                             isAdminLogin = true;
-                            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+                            Intent intent = new Intent(getApplicationContext(), MenuPrincipal.class);
                             startActivity(intent);
                             finish();
                         }
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Credenciales inválidas!", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -221,15 +229,23 @@ public class MainActivity extends AppCompatActivity {
 
                         if (usr.isAdmin()) {
                             isAdminLogin = false;
-                            Intent intent_admin = new Intent(MainActivity.this, MenuPrincipal_admin.class);
+                            Intent intent_admin = new Intent(getApplicationContext(), MenuPrincipal_admin.class);
                             startActivity(intent_admin);
                             finish();
                         } else {
                             isAdminLogin = true;
-                            Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
+                            Intent intent = new Intent(getApplicationContext(), MenuPrincipal.class);
                             startActivity(intent);
                             finish();
                         }
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Credenciales inválidas!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -5,6 +5,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -185,6 +190,16 @@ public class Car {
 
         } catch (IOException | JSONException ex) {
             Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnrecoverableKeyException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyStoreException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
         }
         return tm_car;
     }
@@ -235,7 +250,8 @@ public class Car {
                 }
             }
             System.out.println(carsMesage);
-        } catch (IOException | JSONException ex) {
+        } catch (IOException | JSONException | NoSuchAlgorithmException | KeyStoreException |
+                UnrecoverableKeyException | KeyManagementException | CertificateException ex) {
             Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tm_car;

@@ -45,7 +45,7 @@ public class Registro extends AppCompatActivity {
 
     RequestQueue requestQueue;
     //http://10.2.66.56/index.php/user/register?firstname=test2&lastname=test2&phone=123&addr=test2&username=test2&email=test2@test.net&password=test2
-    private static final String URl_registro="http://10.2.66.56/index.php/user/register";
+    private static final String URl_registro="https://10.2.66.56/index.php/user/register";
 
 
     @Override
