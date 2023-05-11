@@ -1,7 +1,5 @@
 package magdalenaramirez.ioc.movemore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,26 +11,27 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
-import com.android.volley.Request;
+import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-
+import magdalenaramirez.ioc.movemore.utiles.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import magdalenaramirez.ioc.movemore.utiles.Util;
-
 public class Registro extends AppCompatActivity {
 
+    //http://10.2.66.56/index.php/user/register?firstname=test2&lastname=test2&phone=123&addr=test2&username=test2&email=test2@test.net&password=test2
+    private static final String ruta_registro = "user/register";
     TextInputEditText mTI_Reg_Nombre;
     TextInputEditText mTI_Reg_Apellidos;
     TextInputEditText mTI_Reg_Telefono;
@@ -42,11 +41,7 @@ public class Registro extends AppCompatActivity {
     TextInputEditText mTI_Reg_Contrasena;
     Button mbtn_Reg_Aceptar;
     Button mbtn_Reg_Cancelar;
-
     RequestQueue requestQueue;
-    //http://10.2.66.56/index.php/user/register?firstname=test2&lastname=test2&phone=123&addr=test2&username=test2&email=test2@test.net&password=test2
-    private static final String URl_registro="http://10.2.66.56/index.php/user/register";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +73,12 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Validar los datos válidos para el registro, si son OK formalizar.
-                validarDatos();
+                try {
+                    validarDatos();
+                } catch (UnrecoverableKeyException | JSONException | CertificateException | IOException |
+                         NoSuchAlgorithmException | KeyStoreException | KeyManagementException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
         });
@@ -92,18 +92,18 @@ public class Registro extends AppCompatActivity {
 
         });
 
-    // Cierre onCreate
+        // Cierre onCreate
     }
 
     // Menu ActionBar
-    private void showMenu(View view){
+    private void showMenu(View view) {
 
-        PopupMenu popupMenu = new PopupMenu(Registro.this,view);
-        popupMenu.getMenuInflater().inflate(R.menu.popup_menu,popupMenu.getMenu());
+        PopupMenu popupMenu = new PopupMenu(Registro.this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.popup_logout)
+                if (menuItem.getItemId() == R.id.popup_logout)
                     logoutSes();
                 return true;
             }
@@ -114,18 +114,18 @@ public class Registro extends AppCompatActivity {
     }
 
     // Logout Sesion - Volver al inicio
-    private void logoutSes(){
-        SharedPreferences SM = getSharedPreferences("userrecord",0);
+    private void logoutSes() {
+        SharedPreferences SM = getSharedPreferences("userrecord", 0);
         SharedPreferences.Editor edit = SM.edit();
-        edit.putBoolean("userlogin",false);
+        edit.putBoolean("userlogin", false);
         edit.commit();
 
-        Intent intent = new Intent(Registro.this,MainActivity.class);
+        Intent intent = new Intent(Registro.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void validarDatos() {
+    private void validarDatos() throws UnrecoverableKeyException, JSONException, CertificateException, IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String nombre = mTI_Reg_Nombre.getText().toString();
         String apellidos = mTI_Reg_Apellidos.getText().toString();
         String telefono = mTI_Reg_Telefono.getText().toString();
@@ -151,7 +151,7 @@ public class Registro extends AppCompatActivity {
         }
     }
 
-    private boolean esNombreValido(String nombre){
+    private boolean esNombreValido(String nombre) {
         Pattern patron = Pattern.compile("^[a-zA-Z ]+$");
         if (!patron.matcher(nombre).matches() || nombre.length() > 30) {
             mTI_Reg_Nombre.setError("Nombre inválido");
@@ -162,7 +162,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    private boolean esApellidoValido(String apellidos){
+    private boolean esApellidoValido(String apellidos) {
         Pattern patron = Pattern.compile("^[a-zA-Z ]+$");
         if (!patron.matcher(apellidos).matches() || apellidos.length() > 30) {
             mTI_Reg_Apellidos.setError("Apellidos inválido");
@@ -173,7 +173,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    private boolean esTelefonoValido(String telefono){
+    private boolean esTelefonoValido(String telefono) {
         if (!Patterns.PHONE.matcher(telefono).matches()) {
             mTI_Reg_Telefono.setError("Teléfono inválido");
             return false;
@@ -183,7 +183,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    private boolean esDireccValido(String direcc){
+    private boolean esDireccValido(String direcc) {
         Pattern patron = Pattern.compile("^[a-zA-Z0-9\\s]+$");
         if (!patron.matcher(direcc).matches() || direcc.length() > 30) {
             mTI_Reg_Direccion.setError("Dirección inválida");
@@ -194,7 +194,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    private boolean esUsuarioValido(String usuario){
+    private boolean esUsuarioValido(String usuario) {
         Pattern patron = Pattern.compile("^[a-zA-Z0-9\\s]+$");
         if (!patron.matcher(usuario).matches() || usuario.length() > 30) {
             mTI_Reg_Usuario.setError("Nombre usuario inválido");
@@ -226,7 +226,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
-    private void registroRequest(){
+    private void registroRequest() throws UnrecoverableKeyException, JSONException, CertificateException, IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 
         Map<String, String> parameters = new HashMap<>();
 
@@ -240,51 +240,50 @@ public class Registro extends AppCompatActivity {
         parameters.put("email", mTI_Reg_Email.getText().toString());
         parameters.put("password", mTI_Reg_Contrasena.getText().toString());
 
-        String mURL_registro = URl_registro+ Util.getParamsString(parameters);
-        Log.i("Registro",Util.getParamsString(parameters));
-        Log.i("Registro",mURL_registro.toString());
+        String mURL_registro = ruta_registro + Util.getParamsString(parameters);
+        Log.i("Registro params", Util.getParamsString(parameters));
+        Log.i("Registro URL", mURL_registro);
 
-        StringRequest request = new StringRequest(
-                Request.Method.GET,
-                URl_registro+Util.getParamsString(parameters),
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("Response:", response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response.toString());
-                            boolean status = jsonObject.getBoolean("status");
-                            String message = jsonObject.getString("message");
-                            Log.i("registroRequest",response.toString());
 
-                            if(status){
-                                //Toast.makeText(Registro.this,"Registro respuesta true", Toast.LENGTH_LONG).show();
-                                Toast.makeText(Registro.this,message, Toast.LENGTH_LONG).show();
-                                limpiarDatosTextView();
-                            }else{
-                                //Toast.makeText(Registro.this,"Registro respuesta false", Toast.LENGTH_LONG).show();
-                                Toast.makeText(Registro.this,message, Toast.LENGTH_LONG).show();
-                            }
+        new Thread(() -> {
+            System.out.println("Hilo de registro iniciado");
+            JSONObject jsonObject = Util.getResponse(mURL_registro, "GET");
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+            if (jsonObject == null) {
+                runOnUiThread(() -> Toast.makeText(Registro.this, "Error en el servidor", Toast.LENGTH_LONG).show());
+                return;
+            }
 
-                    }
+
+            try {
+                boolean status = jsonObject.getBoolean("status");
+                String message = jsonObject.getString("message");
+
+                if (status) {
+                    //Toast.makeText(Registro.this,"Registro respuesta true", Toast.LENGTH_LONG).show();
+                    runOnUiThread(() -> {
+                        Toast.makeText(Registro.this, message, Toast.LENGTH_LONG).show();
+                        limpiarDatosTextView();
+                    });
+                    Intent intent = new Intent(Registro.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    //Toast.makeText(Registro.this,"Registro respuesta false", Toast.LENGTH_LONG).show();
+                    Log.e("Registro", message);
+                    runOnUiThread(() -> Toast.makeText(Registro.this, message, Toast.LENGTH_LONG).show());
+
                 }
-        );
-        //Añadir solicitud
-        requestQueue = Volley.newRequestQueue(Registro.this);
-        requestQueue.add(request);
-    // Cierre del stringRequest
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }).start();
+
+
     }
 
-    private void limpiarDatosTextView(){
+    private void limpiarDatosTextView() {
         mTI_Reg_Nombre.getText().clear();
         mTI_Reg_Apellidos.getText().clear();
         mTI_Reg_Telefono.getText().clear();

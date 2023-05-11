@@ -102,7 +102,12 @@ public class Tus_Coches extends AppCompatActivity {
 
             if (listCars.isEmpty()) {
                 // Show an appropriate message if the request failed
-                Toast.makeText(Tus_Coches.this, "Failed to get car list", Toast.LENGTH_LONG).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(Tus_Coches.this, "Failed to get car list", Toast.LENGTH_LONG).show();
+                    }
+                });
             } else {
                 this.runOnUiThread(() -> {
                     adapter.agregarDatos(listCars);
